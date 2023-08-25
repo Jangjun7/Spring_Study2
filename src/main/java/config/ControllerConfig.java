@@ -8,8 +8,4 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan("controllers")
 public class ControllerConfig {
-    @Bean
-    public HelloController helloController(){
-        return new HelloController();
-    }
 }
