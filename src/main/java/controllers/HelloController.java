@@ -15,11 +15,11 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class HelloController {
 
-    //@Autowired
+   //@Autowired
     private final HttpServletResponse response;
 
     /**
-    @GetMapping("/greet") // 찾기 위한 정보
+    @GetMapping("/greet")
     public String hello() {
         return "hello"; // /WEB-INF/view/hello.jsp
     }
@@ -33,9 +33,9 @@ public class HelloController {
 
         return mv;
     }
-    @GetMapping("/test")
-    public String test(HttpServletRequest request, HttpSession session){
 
+    @GetMapping("/test")
+    public String test(HttpServletRequest request, HttpSession session) {
         System.out.println(request.getContextPath());
         System.out.println(session);
 

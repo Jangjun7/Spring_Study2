@@ -58,9 +58,9 @@
     <dl>
         <dt>주소</dt>
         <dd>
-            <input type="text" name="address.zip" value="${JoinForm.address.zip}">
-            <input type="text" name="address.addr1" value="${JoinForm.address.addr1}">
-            <input type="text" name="address.addr2" value="${JoinForm.address.addr2}">
+            <input type="text" name="address.zip" value="${joinForm.address.zip}">
+            <input type="text" name="address.addr1" value="${joinForm.address.addr1}">
+            <input type="text" name="address.addr2" value="${joinForm.address.addr2}">
         </dd>
     </dl>
     <div>
