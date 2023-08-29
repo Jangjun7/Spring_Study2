@@ -9,6 +9,7 @@
 --%>
 
 <form:form method="POST" action="${action}" modelAttribute="joinForm">
+    <form:errors />
     <dl>
         <dt>
             <spring:message code="member.type" />
@@ -71,6 +72,7 @@
         </dt>
         <dd>
             <form:input path="mobile" />
+            <form:errors path="mobile" element="div" />
         </dd>
     </dl>
     <div>
