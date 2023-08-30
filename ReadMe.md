@@ -1,4 +1,8 @@
 # 스프링 웹 MVC
+1. 세션
+2. 인터셉터
+
+HandlerInterceptor 인터페이스
 
 ## 요청 매핑
 - 스프링 5 추가된 애노테이션
@@ -68,3 +72,46 @@
 * Model
 
       서블릿 기본 객체 : 스프링 컨테이너에 관리 객체 추가 : 요청 메서드의 주입, 의존성 자동 주입(@Autowired)
+
+## 날짜 값 변환
+@DateTimeFormat
+  - pattern
+  - 에러코드 : typeMisMatch
+
+## @PathVariable : 경로 변수
+
+## 익셉션 처리
+@ExceptionHandler
+  * 요청 메서드의 주입 가능한 객체
+  1) 발생한 예외 객체
+  2) Model
+  3) HttpServletRequest
+  4) HttpServletResponse
+  5) HttpSession
+
+@ControllerAdvice
+
+## 스프링 파일 업로드(MultipartFile)
+  - multipart
+  - 설정
+        
+        web.xml
+        <multipart-config>
+          <max-file-size>20971520</max-file-size> <!-- 1MB * 20 -->
+          <max-request-size>41943040</max-request-size> <!-- 40MB -->
+        </multipart-config>
+  - 1kb -> 1024 byte
+  - 1mb -> 1024 kb
+  - 1024 * 1024 * 20
+## MultipartFile
+
+## 프로필과 프로퍼티 파일
+  - @Profile
+    - 설정 관련 빈을 분리
+    - spring.profiles.activity=프로필명
+  - PropertySourcesPlaceholderConfigurer
+    - static 메서드로 정의
+    - @Bean
+  - @Value
+    - @Value("${설정이름}")
+  - spring.profiles.active : properties 파일 방식의 설정

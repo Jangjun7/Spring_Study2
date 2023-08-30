@@ -1,12 +1,16 @@
 package config;
 
+import config.interceptors.MemberOnlyInterceptor;
 import controllers.member.JoinValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.validation.Validator;
 import org.springframework.web.servlet.config.annotation.*;
 
@@ -14,6 +18,10 @@ import org.springframework.web.servlet.config.annotation.*;
 @EnableWebMvc
 @Import(DbConfig.class)
 public class MvcConfig implements WebMvcConfigurer {
+
+    @Value("${file.upload.path}")
+    private String uploadPath;
+
     /*
     @Autowired
     private JoinValidator joinValidator;
@@ -23,6 +31,17 @@ public class MvcConfig implements WebMvcConfigurer {
         return joinValidator;
     }
     */
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(memberOnlyInterceptor())
+                .addPathPatterns("/mypage/**");
+    }
+
+    public MemberOnlyInterceptor memberOnlyInterceptor(){
+        return new MemberOnlyInterceptor();
+    }
+
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
@@ -43,6 +62,9 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**")
                 .addResourceLocations("classpath:/static/");
+
+        registry.addResourceHandler("/upload/**")
+                .addResourceLocations("file:///" + uploadPath);
     }
 
     @Override
@@ -58,5 +80,10 @@ public class MvcConfig implements WebMvcConfigurer {
         ms.setBasenames("messages.commons");
 
         return ms;
+    }
+    public static PropertySourcesPlaceholderConfigurer properties(){
+        PropertySourcesPlaceholderConfigurer conf = new PropertySourcesPlaceholderConfigurer();
+        conf.setLocations(new ClassPathResource("application.properties"));
+        return conf;
     }
 }
