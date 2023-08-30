@@ -15,8 +15,8 @@
 </c:if>
 <c:if test="${sessionScope.member != null}">
     <spring:message code="login.msg">
-        <spring:arguments value="${sessionScope.member.userNm}" />
-        <spring:arguments value="${sessionScope.member.userId}" />
+        <spring:argument value="${sessionScope.member.userNm}" />
+        <spring:argument value="${sessionScope.member.userId}" />
     </spring:message>
     <a href="${logoutUrl}">
         <spring:message code="logout" />
