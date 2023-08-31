@@ -115,3 +115,42 @@ HandlerInterceptor 인터페이스
   - @Value
     - @Value("${설정이름}")
   - spring.profiles.active : properties 파일 방식의 설정
+
+---------------------------------
+
+# JSON 응답과 요청 처리
+* JSON이란?
+  - JSON(JavaScript Object Notation) : 자바스크립트 객체 표기법
+  - ("이름1":"값1","이름2":"값2"...)
+* Jackson 의존 설정
+  - jackson-databind
+  - jackson-datatype-jsr310
+    - JSR310 : Data & TimeAPI (java.time. 패키지)
+
+* @RestController
+1) 스프링5에서 추가
+2) 기존 컨트롤러와 다른점, 반환값이 객체
+   * \> getter 호출 \> JSON 출력
+3) 문자열 반환 \> 문자열 출력
+4) 반환값(void) \> 응답 바디 X
+
+* @ResponseBody
+1) 스프링4까지는 자주 사용된 애노테이션
+2) 일반컨트롤러(@Controller)에서 JSON 요청과 응답을 처리
+
+* @JsonIgnore
+  - JSON 변환 베제
+* @JsonFormat
+  - 날짜의 형식화
+  - pattern
+* RequestBody
+  - 요청 데이터를 JSON 형식으로 인식할수 있도록 알려주는 애노테이션
+  - Content-Type : application/json
+* 참고) ARC - AdvancedRestClient
+* ResponseEntity
+  - 응답 상태 코드 + 응답 바디에 대한 상세한 통제
+1) status(...) : 응답 상태 코드
+2) body(...) : 바디에 출력 코드
+3) build() : 바디 출력 X
+
+* @ExceptionHandler
