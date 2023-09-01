@@ -154,3 +154,13 @@ HandlerInterceptor 인터페이스
 3) build() : 바디 출력 X
 
 * @ExceptionHandler
+
+
+## 타임리프(Thymeleaf)
+* 설정
+
+        thymeleaf-spring6
+        thymeleaf - java8time // JDK8Date & TIME API -> #temporals : 형식화
+        thymeleaf layout : 레이아웃 기능
+* 특징
+  - Natural Template

@@ -17,18 +17,30 @@ public class MembersController {
 
     private final MemberDao memberDao;
 
+    @GetMapping("/list")
+    public String list2(Model model){
+        List<Member> members = memberDao.getList();
+        model.addAttribute("members", members);
+        return "member/list";
+    }
+
     public String list(@ModelAttribute @Valid SearchForm form, Error errors){
         System.out.println(form);
         return "member/list";
     }
     @GetMapping("/info/{id}")
-    public String info(@PathVariable("id") String userId){
-        System.out.println("userId : " + userId);
+    public String info(@PathVariable("id") String userId, Model model){
 
+        Member member = memberDao.get(userId);
+        model.addAttribute("member", member);
+        model.addAttribute("title","<h1>제목</h1>");
+
+        /*
         boolean result = false;
         if(!result){
             throw new RuntimeException("예외 발생.....!!!");
         }
+        */
 
         return "member/info";
     }

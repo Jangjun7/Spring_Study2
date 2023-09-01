@@ -1,5 +1,6 @@
 package config;
 
+import commons.Utils;
 import config.interceptors.MemberOnlyInterceptor;
 import controllers.member.JoinValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import org.springframework.web.servlet.config.annotation.*;
 
 @Configuration
 @EnableWebMvc
-@Import(DbConfig.class)
+@Import({DbConfig.class, TplConfig.class})
 public class MvcConfig implements WebMvcConfigurer {
 
     @Value("${file.upload.path}")
@@ -67,11 +68,12 @@ public class MvcConfig implements WebMvcConfigurer {
                 .addResourceLocations("file:///" + uploadPath);
     }
 
+    /*
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
 
         registry.jsp("/WEB-INF/view/", ".jsp");
-    }
+    }*/
 
     @Bean
     public MessageSource messageSource() {
@@ -85,5 +87,10 @@ public class MvcConfig implements WebMvcConfigurer {
         PropertySourcesPlaceholderConfigurer conf = new PropertySourcesPlaceholderConfigurer();
         conf.setLocations(new ClassPathResource("application.properties"));
         return conf;
+    }
+
+    @Bean
+    public Utils utils(){
+        return new Utils();
     }
 }

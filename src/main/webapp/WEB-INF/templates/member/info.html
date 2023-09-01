@@ -1,0 +1,34 @@
+<!DOCTYPE>
+<html xmlns:th="http://thymeleaf.org">
+    <body>
+        <th:block th:object="${member}">
+            <th:block th:text="${title}"></th:block>
+            <th:block th:utext="${title}"></th:block>
+            [[${member.userNo}]] / [[*{userNo}]]
+            <dl>
+                <dt th:text="${#messages.msgOrNull('member.userNo')}"></dt>
+                <dd th:text="*{userNo}"></dd>
+            </dl>
+            <dl>
+                <dt th:text="#{member.userId}"></dt>
+                <!--<dd th:text="*{#strings.concat(userId, '(', userNm, ')')}"></dd>-->
+                <dd th:text="*{@utils.toUpper(userId)}"></dd>
+            </dl>
+            <dl>
+                <dt th:text="#{member.userNm}"></dt>
+                <dd th:text="*{userNm}"></dd>
+            </dl>
+            <dl>
+                <dt th:text="#{member.regDt}"></dt>
+                <dd th:text="*{#temporals.format(regDt, 'yyyy.MM.dd HH:mm')}"></dd>
+            </dl>
+            <a th:href="@{/member/login(key1=*{userId},key2=*{userNo})}">로그인3</a>
+        </th:block>
+        <a href="http://www.naver.com" th:href="@{/member/join}">회원가입</a>
+        <a th:href="@{/member/login}">로그인</a>
+        <br>
+        <a th:href="@{/member/login(key1=${member.userId},key2=${member.userNo})}">로그인2</a>
+
+        <a th:href="@{/members/info/{id}(id=${member.userId}, no=${member.userNo})}">회원정보</a>
+    </body>
+</html>
