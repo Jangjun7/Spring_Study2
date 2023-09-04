@@ -1,6 +1,9 @@
 <!DOCTYPE>
 <html xmlns:th="http://www.thymeleaf.org">
     <body>
+        <div class="tabs">
+            <a href="#" class="tab" th:classappend="${menuCode == 'member'} ? 'on'">회원관리</a>
+        </div>
         <table border="1">
             <thead>
                 <tr>
@@ -12,6 +15,21 @@
             </thead>
             <tbody>
                 <tr th:each="member : ${members}" th:object="${member}">
+                    <!--<td th:text="${status.index}"></td>-->
+                    <!--
+                    <td>
+                        <th:block th:text="${status.count}"></th:block>
+                        <th:block th:text="${status.first}"></th:block>
+                        <th:block th:text="${status.last}"></th:block>
+                    </td>-->
+                    <!--
+                    <td th:if="${status.odd}">홀수</td>
+                    <td th:unless="${status.odd}">짝수</td>
+                    -->
+                    <!--<td th:if="${status.even}">짝수</td>-->
+                    <td th:switch="${status.odd}">
+
+                    </td>
                     <td th:text="*{userNo}"></td>
                     <td th:text="*{userId}"></td>
                     <td th:text="*{userNm}"></td>

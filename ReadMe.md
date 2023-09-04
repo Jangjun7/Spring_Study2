@@ -164,3 +164,29 @@ HandlerInterceptor 인터페이스
         thymeleaf layout : 레이아웃 기능
 * 특징
   - Natural Template
+
+* th:each : 반복문
+  - status
+    - 반복 상태에 대한 값을 가지고 있는 객체
+    - index : 0부터 시작하는 순서
+    - count : 1부터 시작하는 순서
+    - last, first : 처음, 마지막
+    - odd(홀수), even(짝수)
+  - 참고)
+    - JSTL:
+      - <c:forEach varStatus="status"
+* th:if, th:unless
+  - th:unless="${...}" : ${...} 조건을 반대로 바꿔주는 조건식
+* th:switch
+  - th:case="..."
+  - 조건식의 사용 가능한 상수 : true, false
+* th:href, th:src ...
+  - th:name, th:id ...
+  - th:type ...
+* th:object : 선택 변수식
+* th:classappend
+  - 특정 조건하에서 클래스 속성을 추가하고 제거
+* 스프링 MVC 폼과 에러 메시지 연동
+  - #fields.errors(..) : 배열 : errors.rejectValue(필드명, 에러코드) - 필드 오류
+  - #fields.globalErrors() : error.reject(에러코드) - 커맨드 객체 자체 오류
+  - = #fields
